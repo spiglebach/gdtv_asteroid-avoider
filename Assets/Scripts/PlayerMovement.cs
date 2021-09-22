@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour {
     
     [SerializeField] private float forceMagnitude = 500;
     [SerializeField] private float maxVelocity = 6;
+    [SerializeField] private float rotationSpeed = 6;
 
     private Vector3 movementDirection;
     
@@ -28,8 +29,10 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update() {
         ProcessInput();
-        WrapAroundScreen();
-
+        
+        var newPosition = GetScreenWrappedPosition();
+        var newRotation = GetRotationFacingVelocity();
+        transform.SetPositionAndRotation(newPosition, newRotation);
     }
 
     private void ProcessInput() {
@@ -47,13 +50,12 @@ public class PlayerMovement : MonoBehaviour {
         movementDirection.Normalize();
     }
 
-    private void WrapAroundScreen() {
+    private Vector3 GetScreenWrappedPosition() {
         var newPosition = transform.position;
 
         var viewportPosition = mainCamera.WorldToViewportPoint(newPosition);
         var viewportX = viewportPosition.x;
         var viewportY = viewportPosition.y;
-        if (viewportX > 0 && viewportX < 1 && viewportY > 0 && viewportY < 1) return;
 
         if (viewportX >= 1) {
             newPosition.x = -newPosition.x + WrapAroundOffset;
@@ -67,7 +69,12 @@ public class PlayerMovement : MonoBehaviour {
             newPosition.z = -newPosition.z - WrapAroundOffset;
         }
 
-        transform.SetPositionAndRotation(newPosition, Quaternion.identity);
+        return newPosition;
+    }
+    
+    private Quaternion GetRotationFacingVelocity() {
+        var targetRotation = Quaternion.LookRotation(rigidbody.velocity, Vector3.up);
+        return Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     private void FixedUpdate() {
