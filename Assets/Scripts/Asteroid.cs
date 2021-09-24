@@ -9,4 +9,8 @@ public class Asteroid : MonoBehaviour {
         Destroy(gameObject);
         Destroy(other.gameObject);
     }
+
+    private void OnBecameInvisible() {
+        Destroy(gameObject);
+    }
 }
