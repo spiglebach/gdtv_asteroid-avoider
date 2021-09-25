@@ -8,6 +8,7 @@ public class Asteroid : MonoBehaviour {
             playerHealth.Crash();
         Destroy(gameObject);
         Destroy(other.gameObject);
+        FindObjectOfType<GameOverHandler>().GameOver();
     }
 
     private void OnBecameInvisible() {
