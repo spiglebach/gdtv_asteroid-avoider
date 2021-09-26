@@ -1,6 +1,13 @@
 using UnityEngine;
 
 public class Asteroid : MonoBehaviour {
+    private PlayerHealth _playerHealth;
+    private ScoreSystem _scoreSystem;
+
+    private void Start() {
+        _playerHealth = FindObjectOfType<PlayerHealth>();
+        _scoreSystem = FindObjectOfType<ScoreSystem>();
+    }
 
     private void OnTriggerEnter(Collider other) {
         var playerHealth = other.gameObject.GetComponent<PlayerHealth>();
@@ -12,6 +19,9 @@ public class Asteroid : MonoBehaviour {
     }
 
     private void OnBecameInvisible() {
+        if (_playerHealth.Alive) {
+            _scoreSystem.IncreaseScore();
+        }
         Destroy(gameObject);
     }
 }
