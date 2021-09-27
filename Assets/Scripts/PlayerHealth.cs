@@ -9,4 +9,8 @@ public class PlayerHealth : MonoBehaviour {
         alive = false;
         gameObject.SetActive(false);
     }
+
+    public void Continue() {
+        alive = true;
+    }
 }

@@ -14,7 +14,6 @@ public class Asteroid : MonoBehaviour {
         if (playerHealth)
             playerHealth.Crash();
         Destroy(gameObject);
-        Destroy(other.gameObject);
         FindObjectOfType<GameOverHandler>().GameOver();
     }
 

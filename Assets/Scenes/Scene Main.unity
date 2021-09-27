@@ -4973,9 +4973,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 539986e51b630a8459991ea59ca56fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 4819726810931348822}
   gameOverCanvas: {fileID: 1539784166}
   scoreCanvas: {fileID: 2034688114}
   gameOverText: {fileID: 580047703}
+  continueButton: {fileID: 742944658}
 --- !u!114 &361459392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5312,7 +5314,7 @@ GameObject:
   - component: {fileID: 742944659}
   - component: {fileID: 742944658}
   m_Layer: 5
-  m_Name: Main Menu Button
+  m_Name: Continue Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5382,9 +5384,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 361459392}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadMainMenu
+      - m_Target: {fileID: 361459391}
+        m_TargetAssemblyTypeName: GameOverHandler, Assembly-CSharp
+        m_MethodName: ContinueButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6392,7 +6394,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Main Menu
+  m_Text: Continue
 --- !u!222 &2076620115
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6551,3 +6553,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6af94f856d4956d4898189f12ef44d02, type: 3}
+--- !u!1 &4819726810931348822 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4819726810626920557, guid: 6af94f856d4956d4898189f12ef44d02, type: 3}
+  m_PrefabInstance: {fileID: 4819726810931348821}
+  m_PrefabAsset: {fileID: 0}
